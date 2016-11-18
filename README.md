@@ -19,3 +19,14 @@
 
 # Book
 FPIS 사용
+
+# 참가방법
+## 저장소 가져오기
+1. 저장소를 fork
+2. fork한 저장소로 clone
+
+## PR 보내기
+1. fork한 본인의 저장소로 commit & push
+2. 본인의 저장소에서 Pull Request 요청
+3. 내용 작성 후 Pull Request Submit
+  - slack으로 notice 되고 있음
