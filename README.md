@@ -30,3 +30,7 @@ FPIS 사용
 2. 본인의 저장소에서 Pull Request 요청
 3. 내용 작성 후 Pull Request Submit
   - slack으로 notice 되고 있음
+
+## 최신 내용 받아오기
+1. `git remote add upstream https://github.com/codechobostudy/study-dev-scala.git`
+2. `git pull --rebase upstream origin`
