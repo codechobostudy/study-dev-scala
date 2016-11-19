@@ -34,3 +34,12 @@ FPIS 사용
 ## 최신 내용 받아오기
 1. `git remote add upstream https://github.com/codechobostudy/study-dev-scala.git`
 2. `git pull --rebase upstream origin`
+
+## Status Check
+1. 모든 브런치 확인 `git branch -a`
+2. 설정되어 있는 저장소 확인 `git remote -v`
+
+# Policy
+1. Push Block
+2. PR(Pull Request)만 사용가능
+    - 단, Review를 받아야지만 `Merge` 가능
