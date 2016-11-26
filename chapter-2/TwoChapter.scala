@@ -128,21 +128,53 @@ object List {
   def drop[A](l: List[A], n: Int): List[A] = l match {
     case Nil  =>  Nil
     case Cons(h, Nil) =>  if (n > 0) Nil else l
-    //    case Cons(h, Cons(hs, Nil)) =>  Cons(hs, Nil) // 넣으면 정상동작 안 함 why? 아래의 case와 겹치기 때문인 듯 ..
+//    case Cons(h, Cons(hs, Nil)) =>  Cons(hs, Nil) // 넣으면 정상동작 안 함 why? 아래의 case와 겹치기 때문인 듯 ..
     case Cons(h, ts)  =>  if (n-1 >= 0)  drop(ts, n-1) else l
   }
 
 
+  /**
+    * exercise 3-5 advance
+    * Remove all match elements in list
+    *
+    * @param l
+    * @param f
+    * @tparam A
+    * @return
+    */
   def dropWhileAll[A](l: List[A], f: A => Boolean): List[A] = l match {
     case Nil  =>  Nil
     case Cons(h, Nil) => if (f(h))  Nil else  l
     case Cons(h, t) =>  if (f(h)) t else  Cons(h, dropWhileAll(t, f))
   }
 
+  /**
+    * exercise 3-5
+    * remove element in list
+    * if not match break recursive.
+    *
+    * @param l
+    * @param f
+    * @tparam A
+    * @return
+    */
   def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
     case Nil  =>  Nil
     case Cons(h, Nil) => if (f(h))  Nil else  l
     case Cons(h, t) =>  if (f(h)) dropWhile(t, f) else l
+  }
+
+  /**
+    * remove last element in list
+    *
+    * @param l
+    * @tparam A
+    * @return
+    */
+  def init[A](l: List[A]): List[A] = l match {
+    case Nil => l
+    case Cons(h, Nil) => Nil
+    case Cons(h, t) => Cons(h, init(t))
   }
 }
 
@@ -167,4 +199,8 @@ object Main extends App {
 
   // advanced 3-5
   println(List.dropWhileAll[Int](t, x  =>  x == 2))
+
+  // exercise 3-6
+  println(List.init(t))
+
 }
