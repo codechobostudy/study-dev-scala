@@ -110,14 +110,14 @@ object ch6 {
     def nextInt: (Int, RNG) // Should generate a random `Int`. We'll later define other functions in terms of `nextInt`.
   }
   
-	case class SimpleRNG(seed: Long) extends RNG {
-	  def nextInt: (Int, RNG) = {
-	    val newSeed = (seed * 0x5DEECE66DL + 0xBL) & 0xFFFFFFFFFFFFL // `&` is bitwise AND. We use the current seed to generate a new seed.
-	    val nextRNG = SimpleRNG(newSeed) // The next state, which is an `RNG` instance created from the new seed.
-	    val n = (newSeed >>> 16).toInt // `>>>` is right binary shift with zero fill. The value `n` is our new pseudo-random integer.
-	    (n, nextRNG) // The return value is a tuple containing both a pseudo-random integer and the next `RNG` state.
-	  }
-	}
+  case class SimpleRNG(seed: Long) extends RNG {
+    def nextInt: (Int, RNG) = {
+      val newSeed = (seed * 0x5DEECE66DL + 0xBL) & 0xFFFFFFFFFFFFL // `&` is bitwise AND. We use the current seed to generate a new seed.
+      val nextRNG = SimpleRNG(newSeed) // The next state, which is an `RNG` instance created from the new seed.
+      val n = (newSeed >>> 16).toInt // `>>>` is right binary shift with zero fill. The value `n` is our new pseudo-random integer.
+      (n, nextRNG) // The return value is a tuple containing both a pseudo-random integer and the next `RNG` state.
+    }
+  }
   
   object RNG {
   
@@ -150,9 +150,9 @@ object ch6 {
   
     // ex 6.3
     def intDouble(rng: RNG): ((Int,Double), RNG) = {
-    	val (intVal,r1) = rng.nextInt
-    	val (doubleVal,r2) = double(r1)
-    	((intVal,doubleVal), r2)
+      val (intVal,r1) = rng.nextInt
+      val (doubleVal,r2) = double(r1)
+      ((intVal,doubleVal), r2)
     }
   
     def doubleInt(rng: RNG): ((Double,Int), RNG) = {
@@ -172,9 +172,9 @@ object ch6 {
     def ints(count: Int)(rng: RNG): (List[Int], RNG) = {
       if (count<=0) (List(), rng)
       else {
-	      val (v,nextRng) = rng.nextInt
-	      val next = ints(count-1)(nextRng)
-	      (v :: next._1, next._2)
+        val (v,nextRng) = rng.nextInt
+        val next = ints(count-1)(nextRng)
+        (v :: next._1, next._2)
       }
     }
     

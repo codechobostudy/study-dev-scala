@@ -48,55 +48,55 @@ object ch5 {
   Cons(() => 0,() => s123).toList                 //> res13: List[Int] = List(0, 1, 2, 3)
   Stream.cons(0,s123).toList                      //> res14: List[Int] = List(0, 1, 2, 3)
   
-	Empty.take(1)                             //> res15: ch5.Stream[Nothing] = Empty
-	s123.take(0).toList                       //> res16: List[Int] = List()
-	s123.take(1).toList                       //> res17: List[Int] = List(1)
-	s123.take(3).toList                       //> res18: List[Int] = List(1, 2, 3)
-	s123.take(4).toList                       //> res19: List[Int] = List(1, 2, 3)
-	s123.take(3)                              //> res20: ch5.Stream[Int] = Cons(<function0>,<function0>)
-	
-	Empty.drop(1)                             //> res21: ch5.Stream[Nothing] = Empty
-	s123.drop(0).toList                       //> res22: List[Int] = List(1, 2, 3)
-	s123.drop(1).toList                       //> res23: List[Int] = List(2, 3)
-	s123.drop(3).toList                       //> res24: List[Int] = List()
-	s123.drop(4).toList                       //> res25: List[Int] = List()
-	s123.drop(1)                              //> res26: ch5.Stream[Int] = Cons(<function0>,<function0>)
-	
-	Empty.takeWhile((p:Int) => p<3)           //> res27: ch5.Stream[Nothing] = Empty
-	s123.takeWhile((p:Int) => p<5).toList     //> res28: List[Int] = List(1, 2, 3)
-	s123.takeWhile((p:Int) => p<3).toList     //> res29: List[Int] = List(1, 2)
-	s123.takeWhile((p:Int) => p<1).toList     //> res30: List[Int] = List()
-	s123.takeWhile((p:Int) => p<3)            //> res31: ch5.Stream[Int] = Cons(<function0>,<function0>)
+  Empty.take(1)                             //> res15: ch5.Stream[Nothing] = Empty
+  s123.take(0).toList                       //> res16: List[Int] = List()
+  s123.take(1).toList                       //> res17: List[Int] = List(1)
+  s123.take(3).toList                       //> res18: List[Int] = List(1, 2, 3)
+  s123.take(4).toList                       //> res19: List[Int] = List(1, 2, 3)
+  s123.take(3)                              //> res20: ch5.Stream[Int] = Cons(<function0>,<function0>)
+  
+  Empty.drop(1)                             //> res21: ch5.Stream[Nothing] = Empty
+  s123.drop(0).toList                       //> res22: List[Int] = List(1, 2, 3)
+  s123.drop(1).toList                       //> res23: List[Int] = List(2, 3)
+  s123.drop(3).toList                       //> res24: List[Int] = List()
+  s123.drop(4).toList                       //> res25: List[Int] = List()
+  s123.drop(1)                              //> res26: ch5.Stream[Int] = Cons(<function0>,<function0>)
+  
+  Empty.takeWhile((p:Int) => p<3)           //> res27: ch5.Stream[Nothing] = Empty
+  s123.takeWhile((p:Int) => p<5).toList     //> res28: List[Int] = List(1, 2, 3)
+  s123.takeWhile((p:Int) => p<3).toList     //> res29: List[Int] = List(1, 2)
+  s123.takeWhile((p:Int) => p<1).toList     //> res30: List[Int] = List()
+  s123.takeWhile((p:Int) => p<3)            //> res31: ch5.Stream[Int] = Cons(<function0>,<function0>)
 
-	Empty.forAll((p:Int) => p<3)              //> res32: Boolean = true
-	s123.forAll((p:Int) => p<5)               //> res33: Boolean = true
-	s123.forAll((p:Int) => p<3)               //> res34: Boolean = false
-	s123.forAll((p:Int) => p<1)               //> res35: Boolean = false
-	s123.forAll((p:Int) => p<3)               //> res36: Boolean = false
-		
-	Empty.takeWhile2((p:Int) => p<3)          //> res37: ch5.Stream[Nothing] = Empty
-	s123.takeWhile2((p:Int) => p<5).toList    //> res38: List[Int] = List(1, 2, 3)
-	s123.takeWhile2((p:Int) => p<3).toList    //> res39: List[Int] = List(1, 2)
-	s123.takeWhile2((p:Int) => p<1).toList    //> res40: List[Int] = List()
-	s123.takeWhile2((p:Int) => p<3)           //> res41: ch5.Stream[Int] = Cons(<function0>,<function0>)
-	
-	Empty.headOption                          //> res42: Option[Nothing] = None
-	Stream(1).headOption                      //> res43: Option[Int] = Some(1)
-	s123.headOption                           //> res44: Option[Int] = Some(1)
-	
-	Empty.map((a: Int) => a+1)                //> res45: ch5.Stream[Int] = Empty
-	s123.map((a: Int) => a+1).toList          //> res46: List[Int] = List(2, 3, 4)
-	Empty.filter((p:Int) => p!=2)             //> res47: ch5.Stream[Nothing] = Empty
-	s123.filter((p:Int) => p!=2).toList       //> res48: List[Int] = List(1, 3)
-	
-	Empty.append(Stream.empty).toList         //> res49: List[Nothing] = List()
-	Empty.append(s123).toList                 //> res50: List[Int] = List(1, 2, 3)
-	s123.append(Stream.empty).toList          //> res51: List[Int] = List(1, 2, 3)
-	s123.append(s123).toList                  //> res52: List[Int] = List(1, 2, 3, 1, 2, 3)
-	
-	Empty.flatMap((_:Int) => s123).toList     //> res53: List[Int] = List()
-	s123.flatMap(_ => Stream.empty).toList    //> res54: List[Nothing] = List()
-	s123.flatMap(_ => s123).toList            //> res55: List[Int] = List(1, 2, 3, 1, 2, 3, 1, 2, 3)
+  Empty.forAll((p:Int) => p<3)              //> res32: Boolean = true
+  s123.forAll((p:Int) => p<5)               //> res33: Boolean = true
+  s123.forAll((p:Int) => p<3)               //> res34: Boolean = false
+  s123.forAll((p:Int) => p<1)               //> res35: Boolean = false
+  s123.forAll((p:Int) => p<3)               //> res36: Boolean = false
+    
+  Empty.takeWhile2((p:Int) => p<3)          //> res37: ch5.Stream[Nothing] = Empty
+  s123.takeWhile2((p:Int) => p<5).toList    //> res38: List[Int] = List(1, 2, 3)
+  s123.takeWhile2((p:Int) => p<3).toList    //> res39: List[Int] = List(1, 2)
+  s123.takeWhile2((p:Int) => p<1).toList    //> res40: List[Int] = List()
+  s123.takeWhile2((p:Int) => p<3)           //> res41: ch5.Stream[Int] = Cons(<function0>,<function0>)
+  
+  Empty.headOption                          //> res42: Option[Nothing] = None
+  Stream(1).headOption                      //> res43: Option[Int] = Some(1)
+  s123.headOption                           //> res44: Option[Int] = Some(1)
+  
+  Empty.map((a: Int) => a+1)                //> res45: ch5.Stream[Int] = Empty
+  s123.map((a: Int) => a+1).toList          //> res46: List[Int] = List(2, 3, 4)
+  Empty.filter((p:Int) => p!=2)             //> res47: ch5.Stream[Nothing] = Empty
+  s123.filter((p:Int) => p!=2).toList       //> res48: List[Int] = List(1, 3)
+  
+  Empty.append(Stream.empty).toList         //> res49: List[Nothing] = List()
+  Empty.append(s123).toList                 //> res50: List[Int] = List(1, 2, 3)
+  s123.append(Stream.empty).toList          //> res51: List[Int] = List(1, 2, 3)
+  s123.append(s123).toList                  //> res52: List[Int] = List(1, 2, 3, 1, 2, 3)
+  
+  Empty.flatMap((_:Int) => s123).toList     //> res53: List[Int] = List()
+  s123.flatMap(_ => Stream.empty).toList    //> res54: List[Nothing] = List()
+  s123.flatMap(_ => s123).toList            //> res55: List[Int] = List(1, 2, 3, 1, 2, 3, 1, 2, 3)
 
   Stream.ones.take(2).toList                      //> res56: List[Int] = List(1, 1)
   
@@ -113,21 +113,21 @@ object ch5 {
   Stream.constant(2).take(2).toList               //> res64: List[Int] = List(2, 2)
   Stream.onse2.take(5).toList                     //> res65: List[Int] = List(1, 1, 1, 1, 1)
 
-	Empty.map2((a: Int) => a+1)               //> res66: ch5.Stream[Int] = Empty
-	s123.map2((a: Int) => a+1).toList         //> res67: List[Int] = List(2, 3, 4)
+  Empty.map2((a: Int) => a+1)               //> res66: ch5.Stream[Int] = Empty
+  s123.map2((a: Int) => a+1).toList         //> res67: List[Int] = List(2, 3, 4)
 
-	Empty.take2(1)                            //> res68: ch5.Stream[Nothing] = Empty
-	s123.take2(0).toList                      //> res69: List[Int] = List()
-	s123.take2(1).toList                      //> res70: List[Int] = List(1)
-	s123.take2(3).toList                      //> res71: List[Int] = List(1, 2, 3)
-	s123.take2(4).toList                      //> res72: List[Int] = List(1, 2, 3)
-	s123.take2(3)                             //> res73: ch5.Stream[Int] = Cons(<function0>,<function0>)
+  Empty.take2(1)                            //> res68: ch5.Stream[Nothing] = Empty
+  s123.take2(0).toList                      //> res69: List[Int] = List()
+  s123.take2(1).toList                      //> res70: List[Int] = List(1)
+  s123.take2(3).toList                      //> res71: List[Int] = List(1, 2, 3)
+  s123.take2(4).toList                      //> res72: List[Int] = List(1, 2, 3)
+  s123.take2(3)                             //> res73: ch5.Stream[Int] = Cons(<function0>,<function0>)
 
-	Empty.takeWhile3((p:Int) => p<3)          //> res74: ch5.Stream[Nothing] = Empty
-	s123.takeWhile3((p:Int) => p<5).toList    //> res75: List[Int] = List(1, 2, 3)
-	s123.takeWhile3((p:Int) => p<3).toList    //> res76: List[Int] = List(1, 2)
-	s123.takeWhile3((p:Int) => p<1).toList    //> res77: List[Int] = List()
-	s123.takeWhile3((p:Int) => p<3)           //> res78: ch5.Stream[Int] = Cons(<function0>,<function0>)
+  Empty.takeWhile3((p:Int) => p<3)          //> res74: ch5.Stream[Nothing] = Empty
+  s123.takeWhile3((p:Int) => p<5).toList    //> res75: List[Int] = List(1, 2, 3)
+  s123.takeWhile3((p:Int) => p<3).toList    //> res76: List[Int] = List(1, 2)
+  s123.takeWhile3((p:Int) => p<1).toList    //> res77: List[Int] = List()
+  s123.takeWhile3((p:Int) => p<3)           //> res78: ch5.Stream[Int] = Cons(<function0>,<function0>)
 
   Empty.zipWith(s123)((a: Int,b) => a+b).toList   //> res79: List[Int] = List()
   s123.zipWith(Empty)((a,b:Int) => a+b).toList    //> res80: List[Int] = List()
@@ -173,8 +173,8 @@ object ch5 {
 
     // ex 5.1
     def toList: List[A] = this match {
-    	case Empty => List()
-    	case Cons(h,t) => h() :: t().toList
+      case Empty => List()
+      case Cons(h,t) => h() :: t().toList
     }
     
     // 초기값과 f의 두번째 인자가 게으른 방식으로 평가되는 foldRight
@@ -195,19 +195,19 @@ object ch5 {
     
     // ex 5.2 : case 구문에 if 조건을 넣을 수 있다. 일반 if 구문과 달리 조건부에 괄호를 넣지 않아도 된다.
     def take(n: Int): Stream[A] = this match {
-    	case Cons(h,t) if n>0 => cons(h(),t().take(n-1))
-    	case _ => Empty
+      case Cons(h,t) if n>0 => cons(h(),t().take(n-1))
+      case _ => Empty
     }
     
     def drop(n: Int): Stream[A] = this match {
-    	case Cons(h,t) => if (n>0) t().drop(n-1) else this
-    	case _ => Empty
+      case Cons(h,t) => if (n>0) t().drop(n-1) else this
+      case _ => Empty
     }
   
     // ex 5.3
     def takeWhile(p: A => Boolean): Stream[A] = this match {
-    	case Cons(h,t) if p(h()) => cons( h(), t().takeWhile(p) )
-    	case _ => Empty
+      case Cons(h,t) if p(h()) => cons( h(), t().takeWhile(p) )
+      case _ => Empty
     }
     
     // ex 5.4 : p(a)가 true를 반환하면 게으른 평가가 적용된 && 연산자 오른쪽의 b( t().foldRight(z)(f) )는 평가되지 못한다.
@@ -229,8 +229,8 @@ object ch5 {
     
     // ex 5.7
     def map[B](f: A => B): Stream[B] =
-    	foldRight(empty: Stream[B])((a,b) => cons(f(a),b))
-    	
+      foldRight(empty: Stream[B])((a,b) => cons(f(a),b))
+      
     def filter(f: A => Boolean): Stream[A] =
       foldRight(empty: Stream[A])((a,b) => if (f(a)) cons(a,b) else b)
     
@@ -323,19 +323,19 @@ object ch5 {
     
     // ex 5.8
     def constant[A](a: A): Stream[A] =
-    	cons(a, constant(a))
+      cons(a, constant(a))
     
     // ex 5.9
     def from(n: Int): Stream[Int] =
-    	cons(n, from(n+1))
-    	
+      cons(n, from(n+1))
+      
     // ex 5.10
     // http://www.scala-lang.org/files/archive/api/current/scala/Tuple2.html
     def fibs: Stream[Int] = {
-    	def gen(a: (Int,Int)): Stream[Int] =
-    		cons(a._1, gen(a._2, a._1+a._2))
-    	gen( (0,1) )
-		}
+      def gen(a: (Int,Int)): Stream[Int] =
+        cons(a._1, gen(a._2, a._1+a._2))
+      gen( (0,1) )
+    }
     
     // ex 5.11 : 인자로 '초기상태' 하나와 '(현재 값, 다음 상태) 쌍을 산출하는 함수'를 받는다.
     //           반환값은 현재 값들을 연결한 스트림이다.
@@ -348,13 +348,13 @@ object ch5 {
     
     // ex 5.12
     def fibs2: Stream[Int] =
-	    unfold((0,1))( a => Some(( a._1, (a._2, a._1+a._2) )) )
-	  
-	  def from2(n: Int): Stream[Int] =
-	    unfold(n)( a => Some((a, a+1)) )
-	        
+      unfold((0,1))( a => Some(( a._1, (a._2, a._1+a._2) )) )
+    
+    def from2(n: Int): Stream[Int] =
+      unfold(n)( a => Some((a, a+1)) )
+          
     def constant2[A](a: A): Stream[A] =
-	    unfold(a)( b => Some((b,b)) )
+      unfold(a)( b => Some((b,b)) )
       
     def onse2: Stream[Int] =
       unfold(1)( a => Some((a,a)) )
