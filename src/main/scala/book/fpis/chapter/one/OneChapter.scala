@@ -1,3 +1,7 @@
+package book.fpis.chapter.one
+
+import book.fpis.chapter.two.{List, Nil}
+
 import scala.annotation.tailrec
 
 /**

@@ -1,4 +1,8 @@
-object ch5 {
+package book.fpis.chapter.one
+
+import book.fpis.chapter.two
+
+object CH5 {
 
   /**==========================
          - 엄격성과 나태성 -
@@ -172,8 +176,8 @@ object ch5 {
   trait Stream[+A] {
 
     // ex 5.1
-    def toList: List[A] = this match {
-      case Empty => List()
+    def toList: two.List[A] = this match {
+      case Empty => two.List()
       case Cons(h,t) => h() :: t().toList
     }
     
@@ -281,8 +285,8 @@ object ch5 {
       case _ => None
     }).append( Stream(Stream()) )
     
-    def tailsList: List[List[A]] =
-      tails.toList.init.foldRight(List(List()): List[List[A]])(_.toList :: _)
+    def tailsList: two.List[two.List[A]] =
+      tails.toList.init.foldRight(two.List(two.List()): two.List[two.List[A]])(_.toList :: _)
     
     // ex 5.16
     def scanRight[B](z: B)(f: (A, => B) => B): Stream[B] = foldRight(Stream(z)){
