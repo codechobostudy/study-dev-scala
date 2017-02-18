@@ -1,4 +1,6 @@
-object ch3_excercise {
+package book.fpis.chapter.one
+
+object CH3_Exercise {
 
   /**==========================
          - 함수적 자료 구조 -

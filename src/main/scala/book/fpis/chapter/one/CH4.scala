@@ -1,4 +1,8 @@
-object ch4 {
+package book.fpis.chapter.one
+
+import book.fpis.chapter.two
+
+object CH4 {
 
   /**====================================
          - 예외를 이용하지 않은 오류 처리 -
@@ -59,14 +63,14 @@ object ch4 {
   def square(d: Double) = d * d                   //> square: (d: Double)Double
   Option.lift(square)( parseAndCalc("10", "20") ) //> res24: ch4.Option[Double] = Some(25.0)
   
-  Option.sequence(List(Some(1),Some(2)))    //> res25: ch4.Option[List[Int]] = Some(List(1, 2))
-  Option.sequence(List(Some(1),None))       //> res26: ch4.Option[List[Int]] = None
+  Option.sequence(two.List(Some(1), Some(2)))    //> res25: ch4.Option[List[Int]] = Some(List(1, 2))
+  Option.sequence(two.List(Some(1), None))       //> res26: ch4.Option[List[Int]] = None
   
-  Option.traverse(List(1,2,3))(a => Some(a))//> res27: ch4.Option[List[Int]] = Some(List(1, 2, 3))
-  Option.traverse(List(1,2,3))(a => if (a==2) None else Some(a))
+  Option.traverse(two.List(1, 2, 3))(a => Some(a))//> res27: ch4.Option[List[Int]] = Some(List(1, 2, 3))
+  Option.traverse(two.List(1, 2, 3))(a => if ( a == 2) None else Some(a))
                                                   //> res28: ch4.Option[List[Int]] = None
-  Option.sequence2(List(Some(1),Some(2)))   //> res29: ch4.Option[List[Int]] = Some(List(1, 2))
-  Option.sequence2(List(Some(1),None))      //> res30: ch4.Option[List[Int]] = None
+  Option.sequence2(two.List(Some(1), Some(2)))   //> res29: ch4.Option[List[Int]] = Some(List(1, 2))
+  Option.sequence2(two.List(Some(1), None))      //> res30: ch4.Option[List[Int]] = None
   
   Either.Try(10/0)                          //> res31: ch4.Either[Exception,Int] = Left(java.lang.ArithmeticException: / by
                                                   //|  zero)
@@ -95,8 +99,8 @@ object ch4 {
                                                   //| <: AnyVal]}] = Right(2.0)
   
   
-  Either.traverse(List(1,2))(a => Right(a)) //> res41: ch4.Either[Nothing,List[Int]] = Right(List(1, 2))
-  Either.sequence(List(right1,right1))      //> res42: ch4.Either[Nothing,List[Int]] = Right(List(1, 1))
+  Either.traverse(two.List(1, 2))(a => Right(a)) //> res41: ch4.Either[Nothing,List[Int]] = Right(List(1, 2))
+  Either.sequence(two.List(right1, right1))      //> res42: ch4.Either[Nothing,List[Int]] = Right(List(1, 1))
   
   
   import scala.{Option => _, Some => _, Either => _, _} // hide std library `Option`, `Some` and `Either`, since we are writing our own in this chapter
@@ -194,8 +198,8 @@ object ch4 {
   
   
   import scala.{Option => _, Either => _, Left => _, Right => _, _} // hide std library `Option` and `Either`, since we are writing our own in this chapter
-  
-  /**=======================================
+
+  /*=======================================
       Either := Left(value) | Right(value)
   ==========================================*/
   sealed trait Either[+E,+A] {
@@ -245,6 +249,6 @@ object ch4 {
       catch { case e: Exception => Left(e) }
   
   }
-  
+
 }
-
+

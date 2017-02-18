@@ -1,4 +1,8 @@
-object ch6 {
+package book.fpis.chapter.one
+
+import book.fpis.chapter.two
+
+object CH6 {
 
   /**==========================
          - 순수 함수적 상태 -
@@ -48,13 +52,13 @@ object ch6 {
   RNG.both(RNG.double2, RNG.int)(r1)              //> res20: ((Double, Int), ch6.RNG) = ((0.5360936461947858,-549383847),SimpleRNG
                                                   //| (245470556921330))
 
-  RNG.sequence(List(RNG.int, RNG.double2))(r1)    //> res21: (List[AnyVal], ch6.RNG) = (List(-1151252339, 0.25582678942009807),Sim
+  RNG.sequence(two.List(RNG.int, RNG.double2))(r1)    //> res21: (List[AnyVal], ch6.RNG) = (List(-1151252339, 0.25582678942009807),Sim
                                                   //| pleRNG(245470556921330))
-  RNG.sequence(List(RNG.double2, RNG.int))(r1)    //> res22: (List[AnyVal], ch6.RNG) = (List(0.5360936461947858, -549383847),Simpl
+  RNG.sequence(two.List(RNG.double2, RNG.int))(r1)    //> res22: (List[AnyVal], ch6.RNG) = (List(0.5360936461947858, -549383847),Simpl
                                                   //| eRNG(245470556921330))
-  RNG.sequence2(List(RNG.int, RNG.double2))(r1)   //> res23: (List[AnyVal], ch6.RNG) = (List(-1151252339, 0.25582678942009807),Si
+  RNG.sequence2(two.List(RNG.int, RNG.double2))(r1)   //> res23: (List[AnyVal], ch6.RNG) = (List(-1151252339, 0.25582678942009807),Si
                                                   //| mpleRNG(245470556921330))
-  RNG.sequence2(List(RNG.double2, RNG.int))(r1)   //> res24: (List[AnyVal], ch6.RNG) = (List(0.5360936461947858, -549383847),Simp
+  RNG.sequence2(two.List(RNG.double2, RNG.int))(r1)   //> res24: (List[AnyVal], ch6.RNG) = (List(0.5360936461947858, -549383847),Simp
                                                   //| leRNG(245470556921330))
             
   RNG.ints2(3)(r1)                                //> res25: (List[Int], ch6.RNG) = (List(-1151252339, -549383847, 1612966641),Si
@@ -82,9 +86,9 @@ object ch6 {
   s1.map2(s2)((a,b) => a+b).run(1)                //> res34: (Int, Int) = (6,2)
   s1._map2(s2)((a,b) => a+b).run(1)               //> res35: (Int, Int) = (6,2)
 
-  State.sequence(List(s1,s2,s1,s2)).run(1)        //> res36: (List[Int], Int) = (List(1, 5, 2, 6),3)
+  State.sequence(two.List(s1, s2, s1, s2)).run(1)        //> res36: (List[Int], Int) = (List(1, 5, 2, 6),3)
   
-  val coins = List(Coin,Turn,Coin,Turn,Coin,Turn,Coin,Turn)
+  val coins = two.List(Coin, Turn, Coin, Turn, Coin, Turn, Coin, Turn)
                                                   //> coins  : List[Product with Serializable with ch6.Input] = List(Coin, Turn, 
                                                   //| Coin, Turn, Coin, Turn, Coin, Turn)
   val machine = Machine(false, 5, 10)             //> machine  : ch6.Machine = Machine(false,5,10)
@@ -97,9 +101,9 @@ object ch6 {
   State.simulateMachine(coins).run(machine4)      //> res40: ((Int, Int), ch6.Machine) = ((2,0),Machine(false,0,2))
   val machine5 = Machine(false, 2, 2)             //> machine5  : ch6.Machine = Machine(false,2,2)
   State.simulateMachine(coins).run(machine5)      //> res41: ((Int, Int), ch6.Machine) = ((4,0),Machine(true,0,4))
-  State.simulateMachine(List(Coin)).run(machine5) //> res42: ((Int, Int), ch6.Machine) = ((3,2),Machine(false,2,3))
-  State.simulateMachine(List(Turn)).run(machine5) //> res43: ((Int, Int), ch6.Machine) = ((2,1),Machine(true,1,2))
-  val coins2 = List(Coin,Coin,Coin,Turn,/*locked*/Turn,Turn)
+  State.simulateMachine(two.List(Coin)).run(machine5) //> res42: ((Int, Int), ch6.Machine) = ((3,2),Machine(false,2,3))
+  State.simulateMachine(two.List(Turn)).run(machine5) //> res43: ((Int, Int), ch6.Machine) = ((2,1),Machine(true,1,2))
+  val coins2 = two.List(Coin, Coin, Coin, Turn, /*locked*/ Turn, Turn)
                                                   //> coins2  : List[Product with Serializable with ch6.Input] = List(Coin, Coin,
                                                   //|  Coin, Turn, Turn, Turn)
   val machine6 = Machine(false, 2, 2)             //> machine6  : ch6.Machine = Machine(false,2,2)
@@ -169,8 +173,8 @@ object ch6 {
     }
     
     // ex 6.4
-    def ints(count: Int)(rng: RNG): (List[Int], RNG) = {
-      if (count<=0) (List(), rng)
+    def ints(count: Int)(rng: RNG): (two.List[Int], RNG) = {
+      if (count<=0) (two.List(), rng)
       else {
         val (v,nextRng) = rng.nextInt
         val next = ints(count-1)(nextRng)
@@ -196,17 +200,17 @@ object ch6 {
       map2(ra,rb)((_,_))
 
     // ex 6.7
-    def sequence[A](fs: List[Rand[A]]): Rand[List[A]] =
-      rng => fs.reverse.foldRight((List(): List[A],rng))((a,b) => { val aa = a(b._2); (b._1++List(aa._1), aa._2) }  )
+    def sequence[A](fs: two.List[Rand[A]]): Rand[two.List[A]] =
+      rng => fs.reverse.foldRight((two.List(): two.List[A],rng))((a, b) => { val aa = a(b._2); (b._1 ++ two.List(aa._1), aa._2) }  )
   
-    def concat[A](ra: Rand[A], rb: Rand[List[A]]): Rand[List[A]] =
+    def concat[A](ra: Rand[A], rb: Rand[two.List[A]]): Rand[two.List[A]] =
       map2(ra,rb)(_::_)
 
-    def sequence2[A](fs: List[Rand[A]]): Rand[List[A]] =
-      fs.foldRight( unit(List[A]()) )(concat)
+    def sequence2[A](fs: two.List[Rand[A]]): Rand[two.List[A]] =
+      fs.foldRight( unit(two.List[A]()) )(concat)
     
-    def ints2(count: Int): Rand[List[Int]] =
-      sequence2( List.fill(count)(int) )
+    def ints2(count: Int): Rand[two.List[Int]] =
+      sequence2(two.List.fill(count)(int) )
     
     // ex 6.8
     def flatMap[A,B](f: Rand[A])(g: A => Rand[B]): Rand[B] = rng => {
@@ -258,13 +262,13 @@ object ch6 {
     // ex 6.10b
     def unit[A,S](a: A):State[S,A] = State( s => (a,s) )
     
-    def sequence[A,S](fs: List[State[S,A]]): State[S,List[A]] =
-      fs.foldRight( unit(List()):State[S,List[A]] )((a,b) => a.map2(b)(_::_) )
+    def sequence[A,S](fs: two.List[State[S,A]]): State[S,two.List[A]] =
+      fs.foldRight( unit(two.List()):State[S,two.List[A]] )((a, b) => a.map2(b)(_ :: _) )
   
     type Rand[A] = State[RNG, A]
 
     //ex 6.11
-    def simulateMachine(inputs: List[Input]): State[Machine, (Int, Int)] = {
+    def simulateMachine(inputs: two.List[Input]): State[Machine, (Int, Int)] = {
       def processInput(input: Input, m: Machine): Machine = input match {
         case Coin if m.candies>0 => Machine(false, m.candies, m.coins+1)
         case Turn if !m.locked && m.candies>0 => Machine(true, m.candies-1, m.coins)
@@ -277,5 +281,5 @@ object ch6 {
       } )
     }
   }
-  
+
 }
